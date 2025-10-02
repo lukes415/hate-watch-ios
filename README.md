@@ -30,3 +30,8 @@ ViewModels/
 ## Next Steps
 - [ ] Create mocked views to iterate on user experience
 - [ ] Add mock API client
+
+## Mocked Views
+Selecting teams you want to track:
+
+![list of teams](./resources/list_view.png)
