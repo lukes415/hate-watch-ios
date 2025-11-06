@@ -4,23 +4,27 @@ struct DashboardView: View {
     let selectedTeamIds: Set<Int>
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Dashboard")
-                    .font(.largeTitle)
+        ScrollView {
+            VStack(spacing: 16) {
+                // Mock data for now - replace with real API
+                GameCard(
+                    homeTeam: "Rutgers",
+                    awayTeam: "Maryland",
+                    date: "Nov 8, 2025 11:30 AM",
+                    venue: "SHI Stadium"
+                )
                 
-                Text("Selected \(selectedTeamIds.count) teams")
-                    .foregroundStyle(.secondary)
+                GameCard(
+                    homeTeam: "Texas Tech",
+                    awayTeam: "BYU",
+                    date: "Nov 8, 2025 9:00 AM",
+                    venue: "Jones AT&T Stadium"
+                )
                 
-                // Next step: add game cards here
-                
-                Spacer()
+                // Loop through selectedTeamIds and fetch real games
             }
-            .navigationTitle("My Teams")
+            .padding()
         }
+        .navigationTitle("My Teams")
     }
-}
-
-#Preview {
-    DashboardView(selectedTeamIds: [1, 2])
 }
