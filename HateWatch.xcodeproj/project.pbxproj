@@ -29,24 +29,9 @@
 		189A692F2E8E09ED004ED093 /* HateWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HateWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		181829E42E8E0ED90042E1F2 /* Exceptions for "HateWatch" folder in "HateWatch" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/.gitkeep,
-				ViewModels/.gitkeep,
-				Views/.gitkeep,
-			);
-			target = 189A69172E8E09EA004ED093 /* HateWatch */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		189A691A2E8E09EA004ED093 /* HateWatch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				181829E42E8E0ED90042E1F2 /* Exceptions for "HateWatch" folder in "HateWatch" target */,
-			);
 			path = HateWatch;
 			sourceTree = "<group>";
 		};
