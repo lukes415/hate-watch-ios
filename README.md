@@ -4,12 +4,12 @@
 
 ## Completed
 - [x] Team list selector with team logos
-- [x] Simple game card
+- [x] Game cards showing game details such as home team, away team, and start time
+- [x] Click-in to indivdual game details
+- [x] Connection to cfb-ats-api to pull and display the next game for selected teams
 
 ## Next Steps
-- [ ] Enhanced dashboard to show games for selected teams
-- [ ] Wire the game cards to read from the `cfb-ats-api`
-- [ ] Detailed game views (click in)
+- [ ] Iterate on existing screens
 
 ## Goals
 - [ ] Create simple design previews and add them to the README
@@ -27,8 +27,12 @@
 ## Views
 ### Selecting teams you want to track:
 
-![list of teams](./resources/team_select.png)
+![list of teams](/resources/team_select.png)
 
-### Game cards (mock up):
+### Game cards:
 
 ![game cards](/resources/game_cards.png)
+
+### Game details:
+
+![game details](/resources/game_details.png)

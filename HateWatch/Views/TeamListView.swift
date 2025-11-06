@@ -91,7 +91,10 @@ struct TeamListView: View {
                 }
             }
             .navigationDestination(isPresented: $showDashboard) {
-                DashboardView(selectedTeamIds: vm.selectedTeams)
+                DashboardView(
+                    selectedTeamIds: vm.selectedTeams,
+                    allTeams: vm.teams
+                )
             }
         }
     }
