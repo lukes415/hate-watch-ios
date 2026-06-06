@@ -11,7 +11,7 @@ import Foundation
 struct Team: Identifiable, Codable, Hashable {
     let id: Int
     let name: String
-    let logoURL: URL
+    let logoURL: URL?
     let conference: String?
 
     enum CodingKeys: String, CodingKey {
