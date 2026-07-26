@@ -240,7 +240,7 @@ struct FlowLayout: Layout {
                 prediction: PredictionDetail(modelPickTeamId: 333, probCover: 0.61,
                                              topFactors: ["ELO rating", "Home field", "Rest advantage"])
             ),
-            allTeams: [Team(id: 333, name: "Alabama", logoURL: nil, conference: "SEC")]
+            allTeams: [Team(id: 333, name: "Alabama", logoURL: nil, conference: "SEC", color: nil, alternateColor: nil)]
         )
     }
 }

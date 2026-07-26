@@ -13,9 +13,11 @@ struct Team: Identifiable, Codable, Hashable {
     let name: String
     let logoURL: URL?
     let conference: String?
+    let color: String?
+    let alternateColor: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, conference
+        case id, name, conference, color, alternateColor
         case logoURL = "logoURL"
     }
 }
