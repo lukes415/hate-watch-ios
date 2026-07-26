@@ -58,7 +58,7 @@ struct GameDetailView: View {
             Divider()
 
             VStack(spacing: 8) {
-                Label(game.date, systemImage: "calendar")
+                Label(game.formattedDate, systemImage: "calendar")
                 Label("Week \(game.week)", systemImage: "sportscourt")
             }
             .foregroundStyle(.secondary)

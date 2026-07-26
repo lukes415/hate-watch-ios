@@ -9,27 +9,25 @@ Open `HateWatch.xcodeproj` in Xcode and run on simulator or device. The app expe
 ## Architecture
 
 - `Views/TeamListView.swift` — team browser with search; loads teams from bundled `fbs_teams.json`; persists selected team IDs
-- `Views/DashboardView.swift` — shows next upcoming game card for each selected team; calls `/v1/teams/next-games`
-- `Views/GameCardView.swift` — reusable card component
-- `Views/GameDetailView.swift` — drill-in view for individual game details
+- `Views/DashboardView.swift` — shows next upcoming game card for each selected team; calls `/v1/teams/next-game`
+- `Views/GameCardView.swift` — reusable card component; shows prediction badge with picked team and confidence
+- `Views/GameDetailView.swift` — drill-in view with prediction (pick, confidence bar, key factor chips), venue, weather, and spread
 - `Services/APIService.swift` — single `@MainActor` class with `URLSession` async/await calls to the API
-- `Models/` — `Codable` structs mirroring API response shapes (`Team`, `NextGame`, `NextGamesResponse`)
+- `Models/Game.swift` — `Codable` structs mirroring API response shapes (`NextGame`, `NextGamesResponse`, `VenueDetail`, `WeatherDetail`, `LinesDetail`, `PredictionDetail`)
 
 ## Key notes
 
 - Teams list is loaded from a bundled JSON file (`fbs_teams.json` in Resources), not fetched from the API
-- `DashboardView.formatDate()` is a stub — ISO date string is returned as-is; formatting is a TODO
+- `DashboardView.formatDate()` formats the ISO date string from the API
 - The API base URL is hardcoded in `APIService.swift` as `http://localhost:8000/v1` — no production URL yet
 - Selected team IDs are stored as `Set<Int>` in `TeamListVM`; persistence mechanism not yet implemented (resets on app restart)
 
 ## Next steps (from README)
 
-- Fetch ATS predictions from `cfb-ats-api` and display on game cards
-- Show spread + model probability per game
-- Drill-in view showing feature importances / what the model considered
+- Display list of weekly games for all hated teams with spreads, predictions, and probabilities
 - Persist selected teams across app launches (UserDefaults)
 
 ## Related projects
 
-- `../cfb-ats-api` — backend; run locally before launching the app
-- `../cfb-ats-data` — produces the ML model that will eventually power predictions
+- `../cfb-ats-api` — backend; run locally before launching the app; `/v1/teams/next-game` returns predictions
+- `../cfb-ats-data` — produces the ML model that powers predictions

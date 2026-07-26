@@ -7,6 +7,8 @@
 - [x] Game cards showing game details such as home team, away team, and start time
 - [x] Click-in to indivdual game details
 - [x] Connection to cfb-ats-api to pull and display the next game for selected teams
+- [x] Fetch predictions from `cfb-ats-api` and show pick + confidence on game cards
+- [x] Drill-in game detail view with prediction, key factor chips, venue, weather, and spread
 
 ## Next Steps
 - [ ] Iterate on existing screens
@@ -14,9 +16,9 @@
 ## Goals
 - [ ] Create simple design previews and add them to the README
 - [x] Allow users to select the teams they want to hate watch
-- [ ] Fetch predictions from `cfb-ats-api` to let users know whether the model thinks the team will cover
+- [x] Fetch predictions from `cfb-ats-api` to let users know whether the model thinks the team will cover
 - [ ] Display list of weekly games for all hated teams with spreads, predictions, and probabilities.
-- [ ] Allow users to drill in to see some of what the model is considering
+- [x] Allow users to drill in to see some of what the model is considering
 
 ## Tech
 - Swift 5, SwiftUI

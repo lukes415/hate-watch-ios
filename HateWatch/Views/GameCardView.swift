@@ -52,7 +52,7 @@ struct GameCard: View {
 
             // Game details
             VStack(alignment: .leading, spacing: 4) {
-                Label(game.date, systemImage: "calendar")
+                Label(game.formattedDate, systemImage: "calendar")
                     .font(.subheadline)
                 if let venueName = game.venue?.name {
                     Label(venueName, systemImage: "location")

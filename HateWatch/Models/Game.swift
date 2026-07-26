@@ -41,6 +41,23 @@ struct NextGame: Codable, Identifiable {
         case awayTeamId = "away_team_id"
         case date, venue, weather, lines, prediction, week, season
     }
+
+    /// Kickoff time formatted in Eastern (the CFB broadcast standard), e.g. "Sat, Sep 5 · 4:00 PM ET".
+    /// The API returns UTC ISO8601 (with fractional seconds); falls back to the raw string if unparseable.
+    var formattedDate: String {
+        let iso = ISO8601DateFormatter()
+        iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let isoNoFraction = ISO8601DateFormatter()
+
+        guard let parsed = iso.date(from: date) ?? isoNoFraction.date(from: date) else {
+            return date
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, MMM d · h:mm a"
+        formatter.timeZone = TimeZone(identifier: "America/New_York")
+        return formatter.string(from: parsed) + " ET"
+    }
 }
 
 // MARK: - Detail structs
