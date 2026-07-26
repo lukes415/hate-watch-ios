@@ -70,18 +70,25 @@ struct TeamRow: View {
 struct TeamListView: View {
     @StateObject private var vm = TeamListVM()
     @State private var showDashboard = false
+
     var body: some View {
         NavigationStack {
-            List(vm.filtered) { team in
-                TeamRow(
-                    team: team,
-                    isSelected: vm.selectedTeams.contains(team.id),
-                    onTap: { vm.toggleSelection(for: team) }
-                )
+            VStack(spacing: 0) {
+                List(vm.filtered) { team in
+                    TeamRow(
+                        team: team,
+                        isSelected: vm.selectedTeams.contains(team.id),
+                        onTap: { vm.toggleSelection(for: team) }
+                    )
+                }
+                .listStyle(.insetGrouped)
+                .searchable(text: $vm.search, placement: .navigationBarDrawer(displayMode: .always))
+
+                if !vm.selectedTeams.isEmpty {
+                    continueBar
+                }
             }
-            .listStyle(.insetGrouped)
             .navigationTitle("Teams to Track")
-            .searchable(text: $vm.search, placement: .navigationBarDrawer(displayMode: .always))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
@@ -96,6 +103,23 @@ struct TeamListView: View {
                     allTeams: vm.teams
                 )
             }
+        }
+    }
+
+    // Stays visible regardless of search-focus state, unlike the toolbar's Done
+    // button which SwiftUI hides while .searchable is active. This is the only
+    // way to confirm a selection made while search is focused (e.g. searching
+    // by conference) without first dismissing search.
+    private var continueBar: some View {
+        Button {
+            showDashboard = true
+        } label: {
+            Text("\(vm.selectedTeams.count) team\(vm.selectedTeams.count == 1 ? "" : "s") selected → Continue")
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
         }
     }
 }
