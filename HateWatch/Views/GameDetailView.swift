@@ -55,7 +55,14 @@ struct GameDetailView: View {
                 .frame(maxWidth: .infinity)
             }
 
-            Divider()
+            GeometryReader { geo in
+                HStack(spacing: 0) {
+                    Rectangle().fill(allTeams.color(forTeamId: game.awayTeamId ?? -1)).frame(width: geo.size.width / 2)
+                    Rectangle().fill(allTeams.color(forTeamId: game.homeTeamId ?? -1)).frame(width: geo.size.width / 2)
+                }
+            }
+            .frame(height: 4)
+            .clipShape(RoundedRectangle(cornerRadius: 2))
 
             VStack(spacing: 8) {
                 Label(game.formattedDate, systemImage: "calendar")
@@ -70,6 +77,8 @@ struct GameDetailView: View {
 
     @ViewBuilder
     private func predictionSection(prediction: PredictionDetail, pickedTeam: Team) -> some View {
+        let pickedColor = pickedTeam.color.flatMap(Color.init(hex:)) ?? .blue
+
         VStack(alignment: .leading, spacing: 12) {
             Text("Model Pick")
                 .font(.headline)
@@ -92,7 +101,7 @@ struct GameDetailView: View {
                             .fill(Color(.systemGray5))
                             .frame(height: 8)
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.blue)
+                            .fill(pickedColor)
                             .frame(width: geo.size.width * prediction.probCover, height: 8)
                     }
                 }
@@ -112,8 +121,8 @@ struct GameDetailView: View {
                                 .font(.caption)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 5)
-                                .background(Color.blue.opacity(0.1))
-                                .foregroundColor(.blue)
+                                .background(pickedColor.opacity(0.1))
+                                .foregroundColor(pickedColor)
                                 .cornerRadius(12)
                         }
                     }
@@ -240,7 +249,10 @@ struct FlowLayout: Layout {
                 prediction: PredictionDetail(modelPickTeamId: 333, probCover: 0.61,
                                              topFactors: ["ELO rating", "Home field", "Rest advantage"])
             ),
-            allTeams: [Team(id: 333, name: "Alabama", logoURL: nil, conference: "SEC", color: nil, alternateColor: nil)]
+            allTeams: [
+                Team(id: 333, name: "Alabama", logoURL: nil, conference: "SEC", color: "#9e1b32", alternateColor: "#ffffff"),
+                Team(id: 2, name: "Auburn", logoURL: nil, conference: "SEC", color: "#0c2340", alternateColor: "#e87200"),
+            ]
         )
     }
 }
